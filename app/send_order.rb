@@ -1,4 +1,11 @@
 class SendOrder
+  include HTTParty
+
+  # this is a ruby constructor method
+  # (executed when calling SendOrder.new)
+  def initialize
+    @connection = Redis.new(url: 'my_redis_host_url')
+  end
 
   def send_post(url, body: json_payload)
     response = self.class.post('http://lp_c_host/trade', body: json_payload).response

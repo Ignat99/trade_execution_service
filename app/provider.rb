@@ -24,7 +24,7 @@ class Provider
     # this LP fix service  
   end
 
-  def better_than?(other)
+  def bigger_than?(other)
     self > other
   end
 
