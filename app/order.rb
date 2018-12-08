@@ -46,4 +46,13 @@ class Order
     JSON.dump(payload)
   end
 
+  def payload_a
+    {clOrdID: order_id, side: side, orderQty: size, currency: currency, futSettDate: date, price: price}
+  end
+
+  def payload_d
+    payload_d = payload_a
+    payload_d[:ordType] = 'D'
+    return payload_d
+  end
 end
