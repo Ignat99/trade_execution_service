@@ -1,6 +1,12 @@
 class TradeExecutionService
   include HTTParty
 
+  order = Order.new :side => "a", :size => 100, :currency => "USD", :counter_currency => 5, :date => "8/10/2018", :price => 200, :order_id => 150, :lp => "lpA"
+
+  payload1 = order.payload
+
+
+
   def handle_rest_trade_confirmation(rest_trade_confirmation)
     # trade confirmation will be persisted in db
   end

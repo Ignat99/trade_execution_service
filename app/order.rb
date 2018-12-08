@@ -33,9 +33,17 @@ class Order
     @amount = amount_in_usd(size, currency)
   end
 
-
   def amount_in_usd(size, currency)
     # Calculate the dollar amount
     # it would return a Money object representing a USD amount
   end
+
+  def payload
+    { order_type: 'market', order_id: order_id, side: side, order_qty: size, currency: currency, value_date: date, price: price}
+  end
+
+  def json_payload
+    JSON.dump(payload)
+  end
+
 end
