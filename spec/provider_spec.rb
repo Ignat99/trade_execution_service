@@ -27,4 +27,7 @@ describe Provider do
     @provider.command.eql?('fix:trades:lp_a:NewOrderSingle')
   end
 
+  it " show the constant name " do
+    Provider::LIQUIDITY_PROVIDER_B.eql?("lpB")
+  end
 end

@@ -52,9 +52,9 @@ class Order
     {clOrdID: order_id, side: side, orderQty: size, currency: currency, futSettDate: date, price: price}
   end
 
-  def payload_d
-    payload_d = payload_a
-    payload_d[:ordType] = 'D'
-    return payload_d
+  def payload_b
+    payload_b = payload_a
+    payload_b[:ordType] = 'D'
+    return payload_b
   end
 end
