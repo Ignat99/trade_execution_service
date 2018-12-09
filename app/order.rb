@@ -23,7 +23,7 @@ class Order
   include HasProperties
 
   has_properties :side, :size, :currency, :counter_currency, :date, :price, :order_id, :lp
-
+  attr_reader :amount
 
 #{:side => "", :size => 0, :currency => "", :counter_currency => 0, \
 #  :date => "", :price => 0, :order_id => 0, :lp => "" }
@@ -36,6 +36,7 @@ class Order
   def amount_in_usd(size, currency)
     # Calculate the dollar amount
     # it would return a Money object representing a USD amount
+   return size
   end
 
   def payload

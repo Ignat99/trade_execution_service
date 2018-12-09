@@ -1,9 +1,17 @@
+class Fixnum
+
+  def to_money(currency)
+      self
+  end
+end
+
 class Provider
   include Comparable
 
   LIQUIDITY_PROVIDER_A = "lpA"
   LIQUIDITY_PROVIDER_B = "lpB"
   LIQUIDITY_PROVIDER_C = "lpC"
+  USD = "USD"
 
   def self.from_amount(amount)
     if amount < 10_000.to_money(USD)
@@ -18,6 +26,7 @@ class Provider
   def initialize(lp)
     @lp = lp
   end
+
 
   def check_fix_service_status(lp)
     # it will throw an Exception if there is no connectivity with
