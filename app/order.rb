@@ -24,6 +24,7 @@ class Order
 
   has_properties :side, :size, :currency, :counter_currency, :date, :price, :order_id, :lp
   attr_reader :amount
+  attr_accessor :lp
 
 #{:side => "", :size => 0, :currency => "", :counter_currency => 0, \
 #  :date => "", :price => 0, :order_id => 0, :lp => "" }
