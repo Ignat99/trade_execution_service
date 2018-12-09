@@ -5,7 +5,7 @@ describe Provider do
 
   it "is a LIQUIDITY_PROVIDER_A"  do
     provider = Provider.new("lpA")
-    provider.eql?("lpA").should == true
+    expect(provider).to eq("lpA")
   end
 
   before(:each) do
@@ -14,20 +14,20 @@ describe Provider do
   end
 
 
-  it " selected from amount" do
-    @provider.eql?("lpA").should == true
+  it "selected from amount" do
+    expect(@provider).to eq("lpA")
   end
 
-  it " defined by order " do
+  it "defined by order" do
     @order.lp = @provider
-    @order.class.props[7].eql?("lp")
+    expect(@order.class.props[7]).to eq(:lp)
   end
 
-  it " defined command " do
-    @provider.command.eql?("fix:trades:lp_a:NewOrderSingle").should == true
+  it "defined command" do
+    expect(@provider.command).to eq("fix:trades:lp_a:NewOrderSingle")
   end
 
-  it " show the constant name " do
-    Provider::LIQUIDITY_PROVIDER_B.eql?("lpB")
+  it "show the constant name" do
+    expect(Provider::LIQUIDITY_PROVIDER_B).to eq("lpB")
   end
 end

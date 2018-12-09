@@ -28,7 +28,7 @@ describe TradeExecutionService do
   end
 
   it " for execute order " do
-    @order.lp.command.eql?("fix:trades:lp_a:NewOrderSingle")
+    expect(@order.lp.command).to eq("fix:trades:lp_a:NewOrderSingle")
   end
 
 #  it " try send payload by POST to POST_URL" do
