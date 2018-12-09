@@ -8,6 +8,7 @@ describe TradeExecutionService do
 
   before(:each) do
     @order = Order.new :side => "a", :size => 100, :currency => "USD", :counter_currency => 5, :date => "8/10/2018", :price => 200, :order_id => 150
+    @order.lp = Provider.from_amount(@order.amount)
     @tes = TradeExecutionService.new
   end
 
@@ -27,12 +28,18 @@ describe TradeExecutionService do
   end
 
   it " for execute order " do
-    @order.lp = Provider.from_amount(@order.amount)
     @order.lp.command.eql?("fix:trades:lp_a:NewOrderSingle")
   end
 
+#  it " try send payload by POST to POST_URL" do
+#    @tes.send_by_post(TradeExecutionService::POST_URL, @order.json_payload)
+#  end
+
+#  it "" do
+#    @tes.send_to_redis_a(@order.lp.command, @order.payload_a)
+#  end
+
 #  it " for execute order " do
-#    @order.lp = Provider.from_amount(@order.amount)
 #    @tes.execute_order(@order)
 #  end
 

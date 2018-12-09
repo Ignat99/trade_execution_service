@@ -1,4 +1,5 @@
 require "httparty"
+require "redis"
 require_relative "./app/order"
 require_relative "./app/send_order"
 require_relative "./app/provider"
@@ -7,9 +8,10 @@ class TradeExecutionService < SendOrder
 
 #  LOG_FILE  = 'path_to_log_file/errors.log'
   LOG_FILE  = './errors.log'
-  POST_URL  = 'http://lp_c_host/trade'
-  REDIS_URL = 'my_redis_host_url'
-
+#  POST_URL  = 'http://lp_c_host/trade'
+  POST_URL  = 'http://127.0.0.1:8081/'
+#  REDIS_URL = 'my_redis_host_url'
+  REDIS_URL = 'redis://127.0.0.1:6379/0'
   def initialize
     super(REDIS_URL)
   end
@@ -18,7 +20,7 @@ class TradeExecutionService < SendOrder
     if order.lp == Provider::LIQUIDITY_PROVIDER_C
       send_by_post(POST_URL, order.json_payload)
     elsif
-      check_fix_service_status(lp)
+      order.lp.check_fix_service_status(lp)
       if order.lp == Provider::LIQUIDITY_PROVIDER_A
         send_to_redis_a(order.lp.command, order.payload_a)
       else
@@ -51,7 +53,8 @@ class TradeExecutionService < SendOrder
   end
 end
 
-order = Order.new :side => "a", :size => 100, :currency => "USD", :counter_currency => 5, :date => "8/10/2018", :price => 200, :order_id => 150
-order.lp = Provider.from_amount(order.amount)
-tes = TradeExecutionService.new
-puts tes.execute_order(order)
+@order = Order.new :side => "a", :size => 100, :currency => "USD", :counter_currency => 5, :date => "8/10/2018", :price => 200, :order_id => 150
+@order.lp = Provider.from_amount(@order.amount)
+@tes = TradeExecutionService.new
+puts @tes.execute_order(@order)
+#@tes.send_by_post(TradeExecutionService::POST_URL, @order.json_payload)
