@@ -23,8 +23,8 @@ describe Provider do
     @order.class.props[7].eql?("lp")
   end
 
-  it " dfedined command " do
-    @provider.command.eql?('fix:trades:lp_a:NewOrderSingle')
+  it " defined command " do
+    @provider.command.eql?("fix:trades:lp_a:NewOrderSingle").should == true
   end
 
   it " show the constant name " do

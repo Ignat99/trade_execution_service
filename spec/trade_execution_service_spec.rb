@@ -27,10 +27,14 @@ describe TradeExecutionService do
   end
 
   it " for execute order " do
-    provider = Provider.from_amount(@order.amount)
-    @order.lp = provider
-#    @tes.execute_order(provider, @order)
-    puts @order.lp.command
+    @order.lp = Provider.from_amount(@order.amount)
+    @order.lp.command.eql?("fix:trades:lp_a:NewOrderSingle")
   end
+
+#  it " for execute order " do
+#    @order.lp = Provider.from_amount(@order.amount)
+#    @tes.execute_order(@order)
+#  end
+
 
 end
