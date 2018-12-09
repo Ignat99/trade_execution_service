@@ -27,6 +27,16 @@ class Provider
     @lp = lp
   end
 
+  def command
+    if @lp.eql?(LIQUIDITY_PROVIDER_A)
+      return 'fix:trades:lp_a:NewOrderSingle'
+    elsif @lp.eql?(LIQUIDITY_PROVIDER_B)
+      return 'fix:trades:lp_b:NewOrderSingle'
+    else
+      return nil
+    end
+  end
+
 
   def check_fix_service_status(lp)
     # it will throw an Exception if there is no connectivity with
